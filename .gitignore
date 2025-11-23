@@ -1,0 +1,8 @@
+# Ignore PDF files
+*.pdf
+
+# Ignore MATLAB autosave files
+*.asv
+
+# Ignore entire 'final' folder
+final/
