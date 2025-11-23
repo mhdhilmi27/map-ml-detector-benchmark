@@ -1,6 +1,5 @@
 backup.m
-.DS_Store
-.ipynb_checkpoints
+**/.DS_Store
 
 # Ignore PDF files
 *.pdf
@@ -9,4 +8,6 @@ backup.m
 *.asv
 
 # Ignore entire 'final' folder
-final/*
+final/
+.ipynb_checkpoints/
+**/.ipynb_checkpoints/
