@@ -5,4 +5,4 @@
 *.asv
 
 # Ignore entire 'final' folder
-final/
+final/*
