@@ -1,3 +1,7 @@
+backup.m
+.DS_Store
+.ipynb_checkpoints
+
 # Ignore PDF files
 *.pdf
 
