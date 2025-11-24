@@ -13,5 +13,5 @@ final/
 **/.ipynb_checkpoints/
 
 # ignore file in folder
-jupyter notebok/ML_RET_training.ipynb
+jupyter_notebook/ML_RET_training.ipynb
 
