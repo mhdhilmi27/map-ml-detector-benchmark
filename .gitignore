@@ -11,3 +11,7 @@ backup.m
 final/
 .ipynb_checkpoints/
 **/.ipynb_checkpoints/
+
+# ignore file in folder
+jupyter notebok/ML_RET_training.ipynb
+
