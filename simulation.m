@@ -75,8 +75,31 @@ t_signal_tx = linspace(0, (Nmes*Ts) - (Ts/Nsamples), Nmes*Nsamples);
 
 plot_signal(t_signal_tx, signal_tx, Nmes, Ts, 's(t)', 'Transmit signal s(t)')
 
+%% signal in orthonormal basis (for visualization purpose)
+Ts = 1;
+
+A = [ 1 -1 -1  1] / sqrt(2*Ts);
+B = [ 1  1 -1 -1] / sqrt(2*Ts);
+
+figure; hold on; grid on; axis equal;
+scatter(A, B, 120, 'filled');
+
+labels = {'s0','s1','s2','s3'};
+for k = 1:4
+    text(A(k)+0.05, B(k)+0.05, labels{k}, 'FontSize', 12);
+end
+
+xlabel('A (along \phi_1)');
+ylabel('B (along \phi_2)');
+title('4-QAM in Orthonormal Signal Space');
+
+xline(0); yline(0);
+
+xlim([-1 1]);
+ylim([-1 1]);
+
 %% Gaussian channel: Adding Noise
-N0 = 0.9;
+N0 = 0.5; %linear value
 noise = randn(1, Nmes*Nsamples) * sqrt(Nsamples*N0/2);
 
 signal_rx = signal_tx + noise;
@@ -136,50 +159,50 @@ regions_ml = reshape(idx_ml_grid, size(phi1_grid));
 %% MAP figure: Received vs Sent
 figure;
 
-% MAP Received
+% MAP Sent
 subplot(1,2,1);
+scatter(r1, r2, 10, m, 'filled'); hold on;
+contour(phi1_grid, phi2_grid, regions_map, 'w', 'LineWidth', 1.8);
+colormap(jet(4)); clim([0 3]);
+axis equal;
+xlim([phi1_min phi1_max]); ylim([phi2_min phi2_max]);
+xlabel('\phi_1'); ylabel('\phi_2');
+title('Messages Received');
+
+% MAP Received
+subplot(1,2,2);
 scatter(r1, r2, 10, mrec_map, 'filled'); hold on;
 contour(phi1_grid, phi2_grid, regions_map, 'w', 'LineWidth', 1.8);
 colormap(jet(4)); clim([0 3]);
 axis equal;
 xlim([phi1_min phi1_max]); ylim([phi2_min phi2_max]);
 xlabel('\phi_1'); ylabel('\phi_2');
-title('MAP Received');
-
-% MAP Sent
-subplot(1,2,2);
-scatter(r1, r2, 10, m, 'filled'); hold on;
-contour(phi1_grid, phi2_grid, regions_map, 'w', 'LineWidth', 1.8);
-colormap(jet(4)); clim([0 3]);
-axis equal;
-xlim([phi1_min phi1_max]); ylim([phi2_min phi2_max]);
-xlabel('\phi_1'); ylabel('\phi_2');
-title('MAP Sent');
+title('MAP Receiver Decision');
 
 sgtitle('MAP Receiver');
 
 %% ML figure: Received vs Sent
 figure;
 
-% ML Received
-subplot(1,2,1);
-scatter(r1, r2, 10, mrec_ml, 'filled'); hold on;
-contour(phi1_grid, phi2_grid, regions_ml, 'w', 'LineWidth', 1.8);
-colormap(jet(4)); clim([0 3]);
-axis equal;
-xlim([phi1_min phi1_max]); ylim([phi2_min phi2_max]);
-xlabel('\phi_1'); ylabel('\phi_2');
-title('ML Received');
-
 % ML Sent
-subplot(1,2,2);
+subplot(1,2,1);
 scatter(r1, r2, 10, m, 'filled'); hold on;
 contour(phi1_grid, phi2_grid, regions_ml, 'w', 'LineWidth', 1.8);
 colormap(jet(4)); clim([0 3]);
 axis equal;
 xlim([phi1_min phi1_max]); ylim([phi2_min phi2_max]);
 xlabel('\phi_1'); ylabel('\phi_2');
-title('ML Sent');
+title('Messages Received');
+
+% ML Received
+subplot(1,2,2);
+scatter(r1, r2, 10, mrec_ml, 'filled'); hold on;
+contour(phi1_grid, phi2_grid, regions_ml, 'w', 'LineWidth', 1.8);
+colormap(jet(4)); clim([0 3]);
+axis equal;
+xlim([phi1_min phi1_max]); ylim([phi2_min phi2_max]);
+xlabel('\phi_1'); ylabel('\phi_2');
+title('ML Receiver Decision');
 
 sgtitle('ML Receiver');
 
@@ -277,4 +300,5 @@ function plot_signal(t, signal, Nmes, Ts, y_label, fig_title)
     ylabel(y_label);
     title(fig_title);
 end
+
 
