@@ -1,5 +1,20 @@
 # map-ml-detector-benchmark
+```
 This project explores whether a simple machine learning classifier (Logistic Regression) can learn to perform symbol detection compared to classical MAP and ML detectors.
+
+some explanation about the code:
+1. simulation.m : if you want to see the MAP and ML receivers implementation in details using matlab.
+
+2. data_generation.m : matlab code to generate training and testing data.
+
+3. jupyter_notebook/model_training.ipyn : python code to implement Logistic Regression classifier using sklearn library.
+
+4. jupyter_notebook/analysis.ipynb : python code to analyze and compare the performance of all three detectors.
+
+5. jupyter_notebook/visualization.ipynb : python code to generate GIF plots.
+
+simple way to remember, if you search the MAP and ML go to MATLAB files, if you want the Machine Learning part go to Jupyter Notebook files.
+```
 
 ## 1. Simulation Setup
 This section describes the simulation setup, including the modulation scheme, prior distribution of messages, channel model, and sample generation for training and testing.
