@@ -72,3 +72,27 @@ This section describes the result of implementation Maximum Likelihood (ML) and 
 
 
 MAP receiver outperforms ML receiver due to the non-uniform prior distribution of messages especially in low SNR scenarios.
+
+<img src="./images/map_ml_sweep.gif" alt="MAP ML Sweep" width="800"/>
+
+## 3. Machine Learning Classifier
+This section describes the implementation of a Logistic Regression classifier for symbol detection and compares its performance with MAP and ML receivers.
+
+<img src="./images/confussion_matrix.png" alt="confussion matrix" width="400"/>
+
+## How to read
+### Example look at Real Symbol = 0 (x-axis)
+Predicted by ML Classifier (y-axis):
+- 0 (62.67%) ==> Correct classification 63% of the time
+- 1 (18.95%) ==> Misclassified as symbol 1 18.95%
+- 2 (0.16%)  ==> Misclassified as symbol 2 0.16%
+- 3 (18.22%) ==> Misclassified as symbol 3 18.22%
+
+> So symbol 0 is mostly confused with symbol 1 and symbol 3.
+
+## ML vs MAP vs ML Classifier
+with Logistic Regression Classifier implemented using sklearn library, we compare the performance of all three detectors across different SNR levels.
+
+<img src="./images/comparison.png" alt="comparisson" width="600"/>
+
+ML MAP and ML Classifier have similar performance at high SNR levels, but as the SNR decreases, the ML Classifier starts to outperform the ML detector and approaches the performance of the MAP detector. ML Classifier has the similar performance as MAP detector at low SNR but of course MAP detector is still the best performer overall.
