@@ -1,20 +1,22 @@
 # map-ml-detector-benchmark
-```
 This project explores whether a simple machine learning classifier (Logistic Regression) can learn to perform symbol detection compared to classical MAP and ML detectors.
 
-some explanation about the code:
-1. simulation.m : if you want to see the MAP and ML receivers implementation in details using matlab.
+This repo benchmarks:
+- **ML detector** (classical, ignores priors)
+- **MAP detector** (classical, uses priors)
+- **Logistic Regression classifier** (learned detector, trained from noisy samples)
 
-2. data_generation.m : matlab code to generate training and testing data.
+## Repo structure
 
-3. jupyter_notebook/model_training.ipyn : python code to implement Logistic Regression classifier using sklearn library.
+**MATLAB (classical detectors + data generation)**
+- `simulation.m` — ML and MAP detector implementations + decision visualization  
+- `data_generation.m` — generate training/testing datasets across multiple \(N_0\) values
 
-4. jupyter_notebook/analysis.ipynb : python code to analyze and compare the performance of all three detectors.
+**Python (ML training + evaluation + plots)**
+- `jupyter_notebook/model_training.ipynb` — train Logistic Regression (scikit-learn)
+- `jupyter_notebook/analysis.ipynb` — evaluate & compare ML vs MAP vs ML-classifier
+- `jupyter_notebook/visualization.ipynb` — generate GIF/plots
 
-5. jupyter_notebook/visualization.ipynb : python code to generate GIF plots.
-
-simple way to remember, if you search the MAP and ML go to MATLAB files, if you want the Machine Learning part go to Jupyter Notebook files.
-```
 
 ## 1. Simulation Setup
 This section describes the simulation setup, including the modulation scheme, prior distribution of messages, channel model, and sample generation for training and testing.
@@ -36,7 +38,7 @@ We consider a simple **4-QAM modulation scheme**, where the symbols are represen
 
 ### Prior Distribution of Messages
 ---
-We assume that the messages are equally likely, i.e., the prior probabilities for each symbol are:
+We assume that the messages are messages are non-uniform (imbalanced) and the prior probabilities for each symbol are:
 - P($s_0$) = 1/15
 - P($s_1$) = 6/15
 - P($s_2$) = 2/15
