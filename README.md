@@ -113,3 +113,5 @@ with Logistic Regression Classifier implemented using sklearn library, we compar
 <img src="./images/comparison.png" alt="comparisson" width="600"/>
 
 ML MAP and ML Classifier have similar performance at high SNR levels, but as the SNR decreases, the ML Classifier starts to outperform the ML detector and approaches the performance of the MAP detector. ML Classifier has the similar performance as MAP detector at low SNR but of course MAP detector is still the best performer overall.
+
+thanks!
